@@ -6,6 +6,9 @@ COPY package*.json .
 COPY . .
 
 RUN npm install
+RUN npm i -g @nestjs/cli
+
+VOLUME [ "/var/vvs_api" ]
 
 EXPOSE 4000
 

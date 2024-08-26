@@ -1,7 +1,0 @@
-{
-    "name": "Nestjs dev",
-    "dockerComposeFile": ["../docker-compose.yml"],
-    "service": "dev_server",
-    "shutdownAction": "none",
-    "workspaceFolder": "/workspace/server"
-}
