@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { user_team_master } from "./TeamUserMaster.model";
+import { UserTeamMaster } from "./TeamUserMaster.model";
 
 @Entity()
-export class teams{
+export class Team{
     @PrimaryGeneratedColumn()
     teamId: number
 
@@ -21,6 +21,6 @@ export class teams{
     @Column({ default: 0 })
     teamMembers: number
 
-    @ManyToOne(()=> user_team_master, utm => utm.teamId)
-    teams: user_team_master[]
+    @ManyToOne(()=> UserTeamMaster, utm => utm.teamId)
+    teams: UserTeamMaster[]
 }

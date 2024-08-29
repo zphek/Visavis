@@ -1,9 +1,8 @@
 import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { teams } from "./Team.model";
-import { user_team_master } from "./TeamUserMaster.model";
+import { UserTeamMaster } from "./TeamUserMaster.model";
 
 @Entity()
-export class users{
+export class User{
     @PrimaryGeneratedColumn()
     userId: number
 
@@ -28,6 +27,6 @@ export class users{
     @Column({ default: new Date() })
     updatedAt: string
 
-    @ManyToMany(()=> user_team_master, utm => utm.userId)
-    teams: user_team_master[]
+    @ManyToMany(()=> UserTeamMaster, utm => utm.userId)
+    teams: UserTeamMaster[]
 }

@@ -1,15 +1,15 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { teams } from "./Team.model";
-import { users } from "./User.model";
+import { Team } from "./Team.model";
+import { User } from "./User.model";
 
 @Entity()
-export class user_team_master{
+export class UserTeamMaster{
     @PrimaryGeneratedColumn()
     id: number
 
-    @ManyToOne(()=> users, user => user.userId)
-    userId: teams
+    @ManyToOne(()=> User, user => user.userId)
+    userId: User
 
-    @ManyToOne(()=> teams, team => team.teamId)
-    teamId: teams
+    @ManyToOne(()=> Team, team => team.teamId)
+    teamId: Team
 }

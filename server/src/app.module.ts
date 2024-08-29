@@ -3,26 +3,28 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { users } from './models/User.model';
-import { teams } from './models/Team.model';
-import { user_team_master } from './models/TeamUserMaster.model';
-import { messages } from './models/Message.model';
-import { tasks } from './models/Task.model';
+import { User } from './models/User.model';
+import { Team } from './models/Team.model';
+import { UserTeamMaster } from './models/TeamUserMaster.model';
+import { Message } from './models/Message.model';
+import { Task } from './models/Task.model';
+import { ConfigModule } from '@nestjs/config';
+import { ProjectsModule } from './projects/projects.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
     AuthModule,
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      url: process.env.POSTGRES_URL,
+      url: process.env.POSTGRES_URL, 
       type: 'postgres',
       synchronize: true,
-      host: process.env.POSTGRES_HOST,
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DATABASE,
-      entities: [users, teams, user_team_master], // Especifica las entidades aquí
+      entities: [User, Team, UserTeamMaster, Message, Task],
     }),
-    TypeOrmModule.forFeature([users, teams, user_team_master, messages, tasks]) // Esto va dentro de imports
+    TypeOrmModule.forFeature([User, Team, UserTeamMaster, Message, Task]),
+    ProjectsModule,
+    TasksModule, // Repositorios para las entidades
   ],
   controllers: [AppController],
   providers: [AppService],
